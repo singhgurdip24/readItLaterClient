@@ -108,7 +108,7 @@ class Profile extends Component {
                                 </Tabs> */}
                                 <button 
                                     type="submit" 
-                                    class="ant-btn create-poll-form-button ant-btn-primary ant-btn-lg">
+                                    className="ant-btn create-poll-form-button ant-btn-primary ant-btn-lg">
                                         <span>Create New Article</span>
                                 </button>
                             </div>  
