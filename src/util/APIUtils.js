@@ -63,7 +63,6 @@ export function checkEmailAvailability(email) {
     });
 }
 
-
 export function getCurrentUser() {
     if(!localStorage.getItem(ACCESS_TOKEN)) {
         return Promise.reject("No access token set.");
