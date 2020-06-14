@@ -15,6 +15,8 @@ import Profile from '../user/profile/Profile';
 import AppHeader from '../common/AppHeader';
 import NotFound from '../common/NotFound';
 import LoadingIndicator from '../common/LoadingIndicator';
+import ArticleList from '../article/ArticleList';
+import Article from '../article/Article';
 import PrivateRoute from '../common/PrivateRoute';
 
 import { Layout, notification } from 'antd';
@@ -99,6 +101,11 @@ class App extends Component {
           <Content className="app-content">
             <div className="container">
               <Switch>
+                <Route exact path="/"
+                  render={(props) => <ArticleList isAuthenticated={this.state.isAuthenticated}
+                      currentUser={this.state.currentUser} handleLogout={this.handleLogout} {...props} />}>
+                   {/* render={() => <Article />}> */}
+                </Route>
                 <Route path="/login" 
                   render={(props) => <Login onLogin={this.handleLogin} {...props} />}></Route>
                 <Route path="/signup" component={Signup}></Route>
