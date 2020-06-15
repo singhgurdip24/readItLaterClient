@@ -80,35 +80,51 @@ class ArticleList extends Component {
     render() {
         const articleViews = [];
         this.state.articles.forEach((article, articleIndex) => {
-            articleViews.push(<Col xs={{ span: 5, offset: 1 }} lg={{ span: 6, offset: 2 }}><Article /></Col>)            
+            articleViews.push(
+                <Col className = "card-template" xs={{ span: 5, offset: 2 }} lg={{ span: 6, offset: 2 }}>
+                    <Article
+                        key = {article.id}
+                        articleUrl = {article.url}
+                        imgUrl = {article.image} 
+                        articleTitle = {article.title}
+                        articleDescription = {article.description}
+                    />
+                </Col>
+            )            
         });
 
-        return (
-            <div className="polls-container">
-                <Row gutter={[16, 16]}>
-                    {articleViews}
-                </Row>
-                {
-                    !this.state.isLoading && this.state.articles.length === 0 ? (
-                        <div className="no-polls-found">
-                            <span>No Articles Found.</span>
-                        </div>    
-                    ): null
-                }  
-                {
-                    !this.state.isLoading && !this.state.last ? (
-                        <div className="load-more-polls"> 
-                            <Button type="dashed" onClick={this.handleLoadMore} disabled={this.state.isLoading}>
-                                <Icon type="plus" /> Load more
-                            </Button>
-                        </div>): null
-                }              
-                {
-                    this.state.isLoading ? 
-                    <LoadingIndicator />: null                     
-                }
-            </div>
-        );
+        if(this.props.isAuthenticated) {
+            return (
+                <div className="polls-container">
+                    <Row type = "flex" gutter={{ xs: 8, sm: 8, md: 8}}>
+                        {articleViews}
+                    </Row>
+                    {
+                        !this.state.isLoading && this.state.articles.length === 0 ? (
+                            <div className="no-polls-found">
+                                <span>No Articles Found.</span>
+                            </div>    
+                        ): null
+                    }  
+                    {
+                        !this.state.isLoading && !this.state.last ? (
+                            <div className="load-more-polls"> 
+                                <Button type="dashed" onClick={this.handleLoadMore} disabled={this.state.isLoading}>
+                                    <Icon type="plus" /> Load more
+                                </Button>
+                            </div>): null
+                    }              
+                    {
+                        this.state.isLoading ? 
+                        <LoadingIndicator />: null                     
+                    }
+                </div>
+            );
+        } else {
+            return(
+                <div>You are logged out</div>
+            );
+        }
     }
 }
 
