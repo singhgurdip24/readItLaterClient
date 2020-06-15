@@ -9,17 +9,18 @@ class Article extends Component {
 
     render(){
         return(
-            <div >
-                    <Card
-                        hoverable
-                        style={{ width: 300, height:400 }}
-                        cover={<img alt="example" src={this.props.imgUrl} />}
-                    >
-                        <Meta className = "card-meta"
-                            title={this.props.articleTitle} 
-                            description={this.props.articleDescription} />
-                    </Card>
-                </div>
+            <div 
+                onClick={()=>{window.open(this.props.articleUrl,"_blank");}}>
+                <Card
+                    hoverable
+                    style={{ width: 300, height:400 }}
+                    cover={<img alt="example" src={this.props.imgUrl} />}>
+                    <Meta className = "card-meta"
+                        title={this.props.articleTitle} 
+                        description={this.props.articleDescription} />
+                </Card>
+            </div>
+                
         );
     }
 }
