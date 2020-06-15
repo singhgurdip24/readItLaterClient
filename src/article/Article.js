@@ -10,6 +10,7 @@ class Article extends Component {
     render(){
         return(
             <div 
+                style={{margin: 10}}
                 onClick={()=>{window.open(this.props.articleUrl,"_blank");}}>
                 <Card
                     hoverable

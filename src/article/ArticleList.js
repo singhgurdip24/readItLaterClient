@@ -81,7 +81,7 @@ class ArticleList extends Component {
         const articleViews = [];
         this.state.articles.forEach((article, articleIndex) => {
             articleViews.push(
-                <Col className = "card-template" xs={{ span: 5, offset: 2 }} lg={{ span: 6, offset: 2 }}>
+                <Col key={articleIndex} className = "card-template" xs={{ span: 5, offset: 2 }} lg={{ span: 6, offset: 2 }}>
                     <Article
                         key = {article.id}
                         articleUrl = {article.url}
