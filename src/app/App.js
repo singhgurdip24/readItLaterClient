@@ -16,7 +16,6 @@ import AppHeader from '../common/AppHeader';
 import NotFound from '../common/NotFound';
 import LoadingIndicator from '../common/LoadingIndicator';
 import ArticleList from '../article/ArticleList';
-import Article from '../article/Article';
 import PrivateRoute from '../common/PrivateRoute';
 
 import { Layout, notification } from 'antd';

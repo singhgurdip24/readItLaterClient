@@ -10,7 +10,7 @@ class Article extends Component {
                 <Card
                     hoverable
                     style={{ width: 240 }}
-                    cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+                    cover={<img alt="example" src="https://miro.medium.com/max/1200/1*hlrhoatYRtS8jzsdZbvPXg.jpeg" />}
                 >
                     <Meta title="Europe Street beat" description="www.instagram.com" />
                 </Card>

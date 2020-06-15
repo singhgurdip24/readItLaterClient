@@ -3,8 +3,27 @@ import { getUserSavedArticles } from '../util/APIUtils';
 import Article from './Article';
 import LoadingIndicator  from '../common/LoadingIndicator';
 import { Button, Icon, notification } from 'antd';
-import { POLL_LIST_SIZE } from '../constants';
+import { POLL_LIST_SIZE, ARTICLE_DETAIL_RESPONSE } from '../constants';
 import { withRouter } from 'react-router-dom';
+import { Row, Col } from 'antd';
+
+/*
+class ArticleList extends Component {
+    render(){
+        if(this.props.isAuthenticated) {
+            return(
+                <div>
+                    <Article />
+                </div>
+            );
+        } else {
+            return(
+                <div>You are logged out</div>
+            );
+        }
+    }
+}
+*/
 
 class ArticleList extends Component {
     constructor(props) {
@@ -16,7 +35,6 @@ class ArticleList extends Component {
             totalElements: 0,
             totalPages: 0,
             last: true,
-            currentVotes: [],
             isLoading: false
         };
         this.loadArticleList = this.loadArticleList.bind(this);
@@ -24,38 +42,15 @@ class ArticleList extends Component {
     }
 
     loadArticleList(page = 0, size = POLL_LIST_SIZE) {
-        let promise;
-        if(this.props.username) {
-            promise = getUserSavedArticles(this.props.username, page, size);
-        }
-
-        if(!promise) {
-            return;
-        }
+        const response = ARTICLE_DETAIL_RESPONSE;
 
         this.setState({
-            isLoading: true
+            articles: response,
+            page:1,
+            totalElements: response.size,
+            totalPages: 1,
         });
 
-        promise            
-        .then(response => {
-            const articles = this.state.articles.slice();
-
-            this.setState({
-                articles: articles.concat(response.content),
-                page: response.page,
-                size: response.size,
-                totalElements: response.totalElements,
-                totalPages: response.totalPages,
-                last: response.last,
-                isLoading: false
-            })
-        }).catch(error => {
-            this.setState({
-                isLoading: false
-            })
-        });  
-        
     }
 
     componentDidMount() {
@@ -72,7 +67,6 @@ class ArticleList extends Component {
                 totalElements: 0,
                 totalPages: 0,
                 last: true,
-                currentVotes: [],
                 isLoading: false
             });    
             this.loadArticleList();
@@ -83,24 +77,17 @@ class ArticleList extends Component {
         this.loadArticleList(this.state.page + 1);
     }
 
-    // handleVoteChange(event, pollIndex) {
-    //     const currentVotes = this.state.currentVotes.slice();
-    //     currentVotes[pollIndex] = event.target.value;
-
-    //     this.setState({
-    //         currentVotes: currentVotes
-    //     });
-    // }
-
     render() {
         const articleViews = [];
         this.state.articles.forEach((article, articleIndex) => {
-            articleViews.push(<Article />)            
+            articleViews.push(<Col xs={{ span: 5, offset: 1 }} lg={{ span: 6, offset: 2 }}><Article /></Col>)            
         });
 
         return (
             <div className="polls-container">
-                {articleViews}
+                <Row gutter={[16, 16]}>
+                    {articleViews}
+                </Row>
                 {
                     !this.state.isLoading && this.state.articles.length === 0 ? (
                         <div className="no-polls-found">
