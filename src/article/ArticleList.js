@@ -7,24 +7,6 @@ import { POLL_LIST_SIZE, ARTICLE_DETAIL_RESPONSE } from '../constants';
 import { withRouter } from 'react-router-dom';
 import { Row, Col } from 'antd';
 
-/*
-class ArticleList extends Component {
-    render(){
-        if(this.props.isAuthenticated) {
-            return(
-                <div>
-                    <Article />
-                </div>
-            );
-        } else {
-            return(
-                <div>You are logged out</div>
-            );
-        }
-    }
-}
-*/
-
 class ArticleList extends Component {
     constructor(props) {
         super(props);
@@ -42,15 +24,34 @@ class ArticleList extends Component {
     }
 
     loadArticleList(page = 0, size = POLL_LIST_SIZE) {
-        const response = ARTICLE_DETAIL_RESPONSE;
+
+        let promise = promise = getUserSavedArticles("myUser", page, size);
+
+        if(!promise) {
+            return;
+        }
 
         this.setState({
-            articles: response,
-            page:1,
-            totalElements: response.size,
-            totalPages: 1,
+            isLoading: true
         });
 
+        promise            
+        .then(response => {
+            console.log(response);
+            this.setState({
+                articles: response.content,
+                page: response.page,
+                size: response.size,
+                totalElements: response.totalElements,
+                totalPages: response.totalPages,
+                last: response.last,
+                isLoading: false
+            })
+        }).catch(error => {
+            this.setState({
+                isLoading: false
+            })
+        });
     }
 
     componentDidMount() {
@@ -90,7 +91,7 @@ class ArticleList extends Component {
                         articleUrl = {article.url}
                         imgUrl = {article.image} 
                         articleTitle = {article.title}
-                        articleDescription = {article.description}
+                        articleDescription = {article.metaDescription}
                     />
                 </Col>
             )            

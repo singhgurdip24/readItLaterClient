@@ -113,5 +113,13 @@ export const ARTICLE_DETAIL_RESPONSE = [
         "publisher":"Medium",
         "title":"How Netflix works: the (hugely simplified) complex stuff that happens every time you hit Play",
         "url":"https://medium.com/refraction-tech-everything/how-netflix-works-the-hugely-simplified-complex-stuff-that-happens-every-time-you-hit-play-3a40c9be254b"
+    },
+    {
+        "id": 9,
+        "author": "",
+        "description": "Learn about the design patterns of microservice software architecture to overcome challenges like loosely coupled services, defining databases, and more.",
+        "image": "https://dz2cdn2.dzone.com/storage/article-thumb/10477269-thumb.jpg",
+        "title": "Design Patterns for Microservices - DZone Microservices",
+        "url": "https://dzone.com/articles/design-patterns-for-microservices"
     }
 ];
