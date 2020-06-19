@@ -25,32 +25,41 @@ class ArticleList extends Component {
 
     loadArticleList(page = 0, size = POLL_LIST_SIZE) {
 
-        let promise = promise = getUserSavedArticles("myUser", page, size);
+        // let promise = promise = getUserSavedArticles("myUser", page, size);
 
-        if(!promise) {
-            return;
-        }
+        // if(!promise) {
+        //     return;
+        // }
 
+        // this.setState({
+        //     isLoading: true
+        // });
+
+        // promise            
+        // .then(response => {
+        //     console.log(response);
+        //     this.setState({
+        //         articles: response.content,
+        //         page: response.page,
+        //         size: response.size,
+        //         totalElements: response.totalElements,
+        //         totalPages: response.totalPages,
+        //         last: response.last,
+        //         isLoading: false
+        //     })
+        // }).catch(error => {
+        //     this.setState({
+        //         isLoading: false
+        //     })
+        // });
+
+        const response = ARTICLE_DETAIL_RESPONSE;
         this.setState({
+            articles: response,
+            page:1,
+            totalElements: response.size,
+            totalPages: 1,
             isLoading: true
-        });
-
-        promise            
-        .then(response => {
-            console.log(response);
-            this.setState({
-                articles: response.content,
-                page: response.page,
-                size: response.size,
-                totalElements: response.totalElements,
-                totalPages: response.totalPages,
-                last: response.last,
-                isLoading: false
-            })
-        }).catch(error => {
-            this.setState({
-                isLoading: false
-            })
         });
     }
 
@@ -91,7 +100,7 @@ class ArticleList extends Component {
                         articleUrl = {article.url}
                         imgUrl = {article.image} 
                         articleTitle = {article.title}
-                        articleDescription = {article.metaDescription}
+                        articleDescription = {article.description}
                     />
                 </Col>
             )            
