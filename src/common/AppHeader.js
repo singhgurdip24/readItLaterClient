@@ -24,6 +24,9 @@ class AppHeader extends Component {
         let menuItems;
         if(this.props.currentUser) {
           menuItems = [
+            <Menu.Item key="/explore">
+              <Link to="/explore">Explore</Link>
+            </Menu.Item>  ,
             <Menu.Item key="/article/new">
               <Link to="/article/new">
                 <img src={pollIcon} alt="poll" className="poll-icon" />
@@ -47,7 +50,7 @@ class AppHeader extends Component {
             </Menu.Item>,
             <Menu.Item key="/signup">
               <Link to="/signup">Signup</Link>
-            </Menu.Item>                  
+            </Menu.Item>              
           ];
         }
 
