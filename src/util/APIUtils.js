@@ -90,3 +90,11 @@ export function getUserSavedArticles(username, page, size) {
         method: 'GET'
     });
 }
+
+export function saveArticle(saveArticleRequest) {
+    return request({
+        url: API_BASE_URL + "/articles",
+        method: 'POST',
+        body: JSON.stringify(saveArticleRequest)
+    });
+}

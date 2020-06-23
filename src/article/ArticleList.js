@@ -25,42 +25,42 @@ class ArticleList extends Component {
 
     loadArticleList(page = 0, size = POLL_LIST_SIZE) {
 
-        // let promise = promise = getUserSavedArticles("myUser", page, size);
+        let promise = promise = getUserSavedArticles("myUser", page, size);
 
-        // if(!promise) {
-        //     return;
-        // }
+        if(!promise) {
+            return;
+        }
 
-        // this.setState({
-        //     isLoading: true
-        // });
-
-        // promise            
-        // .then(response => {
-        //     console.log(response);
-        //     this.setState({
-        //         articles: response.content,
-        //         page: response.page,
-        //         size: response.size,
-        //         totalElements: response.totalElements,
-        //         totalPages: response.totalPages,
-        //         last: response.last,
-        //         isLoading: false
-        //     })
-        // }).catch(error => {
-        //     this.setState({
-        //         isLoading: false
-        //     })
-        // });
-
-        const response = ARTICLE_DETAIL_RESPONSE;
         this.setState({
-            articles: response,
-            page:1,
-            totalElements: response.size,
-            totalPages: 1,
             isLoading: true
         });
+
+        promise            
+        .then(response => {
+            console.log(response);
+            this.setState({
+                articles: response.content,
+                page: response.page,
+                size: response.size,
+                totalElements: response.totalElements,
+                totalPages: response.totalPages,
+                last: response.last,
+                isLoading: false
+            })
+        }).catch(error => {
+            this.setState({
+                isLoading: false
+            })
+        });
+
+        // const response = ARTICLE_DETAIL_RESPONSE;
+        // this.setState({
+        //     articles: response,
+        //     page:1,
+        //     totalElements: response.size,
+        //     totalPages: 1,
+        //     isLoading: true
+        // });
     }
 
     componentDidMount() {
@@ -97,8 +97,8 @@ class ArticleList extends Component {
                     xs={{ span: 5, offset: 2 }} lg={{ span: 6, offset: 2 }}>
                     <Article
                         key = {article.id}
-                        articleUrl = {article.url}
-                        imgUrl = {article.image} 
+                        articleUrl = {article.articleUrl}
+                        imgUrl = {article.imageUrl} 
                         articleTitle = {article.title}
                         articleDescription = {article.description}
                     />

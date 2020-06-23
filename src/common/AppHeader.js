@@ -4,7 +4,7 @@ import {
     withRouter
 } from 'react-router-dom';
 import './AppHeader.css';
-import pollIcon from '../poll.svg';
+import SaveArticleComponent from './SaveArticleComponent' ;
 import { Layout, Menu, Dropdown, Icon } from 'antd';
 const Header = Layout.Header;
     
@@ -24,13 +24,8 @@ class AppHeader extends Component {
         let menuItems;
         if(this.props.currentUser) {
           menuItems = [
-            <Menu.Item key="/explore">
-              <Link to="/explore">Explore</Link>
-            </Menu.Item>  ,
             <Menu.Item key="/article/new">
-              <Link to="/article/new">
-                <img src={pollIcon} alt="poll" className="poll-icon" />
-              </Link>
+                <SaveArticleComponent/>
             </Menu.Item>,
             <Menu.Item key="/">
               <Link to="/">
@@ -41,6 +36,9 @@ class AppHeader extends Component {
                 <ProfileDropdownMenu 
                   currentUser={this.props.currentUser} 
                   handleMenuClick={this.handleMenuClick}/>
+            </Menu.Item>,
+            <Menu.Item key="/explore">
+              <Link to="/explore">Explore</Link>
             </Menu.Item>
           ]; 
         } else {

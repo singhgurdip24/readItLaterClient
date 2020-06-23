@@ -70,6 +70,14 @@
     margin-top: -4px;
   }
 
+  .save-article {
+    margin-right: 15px;
+  }
+
+  .save-article .url-input{
+    margin-right: 15px;
+  }
+
 @media (max-width: 768px) {
   .app-title a {
     font-size: 20px;
