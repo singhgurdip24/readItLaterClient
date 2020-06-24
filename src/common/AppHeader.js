@@ -4,7 +4,6 @@ import {
     withRouter
 } from 'react-router-dom';
 import './AppHeader.css';
-import SaveArticleComponent from './SaveArticleComponent' ;
 import { Layout, Menu, Dropdown, Icon } from 'antd';
 import WrappedArticleForm from './WrappedArticleForm';
 
@@ -27,7 +26,6 @@ class AppHeader extends Component {
         if(this.props.currentUser) {
           menuItems = [
             <Menu.Item key="/article/new">
-                {/* <SaveArticleComponent/> */}
                 <WrappedArticleForm/>
             </Menu.Item>,
             <Menu.Item key="/">
