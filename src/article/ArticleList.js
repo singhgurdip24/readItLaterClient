@@ -38,7 +38,7 @@ class ArticleList extends Component {
         promise            
         .then(response => {
             console.log(response);
-            this.setState({
+            !this.isCancelled && this.setState({
                 articles: response.content,
                 page: response.page,
                 size: response.size,
@@ -52,15 +52,6 @@ class ArticleList extends Component {
                 isLoading: false
             })
         });
-
-        // const response = ARTICLE_DETAIL_RESPONSE;
-        // this.setState({
-        //     articles: response,
-        //     page:1,
-        //     totalElements: response.size,
-        //     totalPages: 1,
-        //     isLoading: true
-        // });
     }
 
     componentDidMount() {
@@ -70,7 +61,7 @@ class ArticleList extends Component {
     componentDidUpdate(nextProps) {
         if(this.props.isAuthenticated !== nextProps.isAuthenticated) {
             // Reset State
-            this.setState({
+            !this.isCancelled && this.setState({
                 articles: [],
                 page: 0,
                 size: 10,
@@ -81,6 +72,10 @@ class ArticleList extends Component {
             });    
             this.loadArticleList();
         }
+    }
+
+    componentWillUnmount() {
+        this.isCancelled = true;
     }
 
     handleLoadMore() {

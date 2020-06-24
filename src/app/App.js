@@ -102,11 +102,11 @@ class App extends Component {
               <Switch>
                 <Route exact path="/"
                   render={(props) => <ArticleList isAuthenticated={this.state.isAuthenticated}
-                      currentUser={this.state.currentUser} handleLogout={this.handleLogout} {...props} />}>
-                   {/* render={() => <Article />}> */}
+                  currentUser={this.state.currentUser} handleLogout={this.handleLogout} {...props} />}>
                 </Route>
                 <Route path="/login" 
-                  render={(props) => <Login onLogin={this.handleLogin} {...props} />}></Route>
+                  render={(props) => <Login onLogin={this.handleLogin} {...props} />}>
+                </Route>
                 <Route path="/signup" component={Signup}></Route>
                 <Route path="/users/:username" 
                   render={(props) => <Profile isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props}  />}>
