@@ -15,7 +15,7 @@ class Article extends Component {
                 <Card
                     hoverable
                     style={{ width: 300, height:400 }}
-                    cover={<img alt="example" src={this.props.imgUrl} />}>
+                    cover={<img width = "198" height="168" alt="example" src={this.props.imgUrl} />}>
                     <Meta className = "card-meta"
                         title={this.props.articleTitle} 
                         description={this.props.articleDescription} />

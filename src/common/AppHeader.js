@@ -6,6 +6,8 @@ import {
 import './AppHeader.css';
 import SaveArticleComponent from './SaveArticleComponent' ;
 import { Layout, Menu, Dropdown, Icon } from 'antd';
+import WrappedArticleForm from './WrappedArticleForm';
+
 const Header = Layout.Header;
     
 class AppHeader extends Component {
@@ -25,7 +27,8 @@ class AppHeader extends Component {
         if(this.props.currentUser) {
           menuItems = [
             <Menu.Item key="/article/new">
-                <SaveArticleComponent/>
+                {/* <SaveArticleComponent/> */}
+                <WrappedArticleForm/>
             </Menu.Item>,
             <Menu.Item key="/">
               <Link to="/">
@@ -53,7 +56,9 @@ class AppHeader extends Component {
         }
 
         return (
-            <Header className="app-header">
+            <Header className="app-header"
+            style = {{backgroundColor: "white"}}
+            >
             <div className="container">
               <div className="app-title" >
                 <Link to="/">Read It Later App</Link>

@@ -78,6 +78,10 @@
     margin-right: 15px;
   }
 
+  .article-form {
+    margin-top: 10px !important;
+  }
+
 @media (max-width: 768px) {
   .app-title a {
     font-size: 20px;

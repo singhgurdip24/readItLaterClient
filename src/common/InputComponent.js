@@ -9,7 +9,11 @@ class InputComponent extends Component {
 
     render() {
       return (
-          <Input className="url-input" onChange={this.getContent.bind(this)} placeholder="Add URL to save article"/>
+          <Input 
+            className="url-input" 
+            onChange={this.getContent.bind(this)} 
+            placeholder="Add URL to save article"
+          />
       );
     }
 }
