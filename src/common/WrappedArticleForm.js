@@ -44,13 +44,14 @@ class ArticleForm extends React.Component {
 
   render() {
     const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
+    const articleUrlError = isFieldTouched('articleUrl') && getFieldError('articleUrl');
 
     return (
       <Form 
         className="article-form" 
         layout="inline" 
         onSubmit={this.handleSubmit}>
-        <Form.Item>
+        <Form.Item validateStatus={articleUrlError ? 'error' : ''} help={articleUrlError || ''}>
           {getFieldDecorator('articleUrl', {
             rules: [{ required: true, message: 'Please input a URL!' }],
           })(
