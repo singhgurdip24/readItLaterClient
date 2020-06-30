@@ -18,7 +18,9 @@ import LoadingIndicator from '../common/LoadingIndicator';
 import ArticleList from '../article/ArticleList';
 import PrivateRoute from '../common/PrivateRoute';
 
-import { Layout, notification } from 'antd';
+import ReduxTest from '../redux/components/ReduxTest'
+
+import { Layout, notification, List } from 'antd';
 const { Content } = Layout;
 
 class App extends Component {
@@ -102,9 +104,7 @@ class App extends Component {
             <div className="container">
               <Switch>
                 <Route exact path="/"
-                  render={(props) => <ArticleList isAuthenticated={this.state.isAuthenticated}
-                  currentUser={this.state.currentUser} handleLogout={this.handleLogout} {...props} />}>
-                </Route>
+                  component={ReduxTest}></Route>
                 <Route path="/login" 
                   render={(props) => <Login onLogin={this.handleLogin} {...props} />}>
                 </Route>
