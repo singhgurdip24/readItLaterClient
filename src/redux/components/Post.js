@@ -21,28 +21,12 @@ export class Post extends Component {
     return true;
   }
 
-  // shouldComponentRender() {
-  //   const {pending} = this.props;
-  //   if (this.props.isArticleAdded === true) {
-  //     if (this.props.isArticleAdded) {
-  //       this.props.isArticleAdded(false);
-  //     }
-  //     return true;
-  //   }
-  //   if(this.pending === false) return false;
-  //   // more tests
-  //   return true;
-  // }
-
   handleIsArticleAdded(){
     this.props.isArticleAdded(false);
     this.props.fetchArticles();
   }
 
   render() {
-    // if(this.props.isArticleAdded){
-    //   this.handleIsArticleAdded();
-    // }
 
     if(!this.shouldComponentRender()) return <LoadingIndicator />
 

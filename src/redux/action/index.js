@@ -50,7 +50,7 @@ export function fetchArticles() {
               throw(res.error);
           }
           dispatch(fetchArticlesSuccess(res.content));
-          return res.content;
+          return res;
       })
       .catch(error => {
           dispatch(fetchArticlesError(error));
