@@ -104,7 +104,9 @@ class App extends Component {
             <div className="container">
               <Switch>
                 <Route exact path="/"
-                  component={ReduxTest}></Route>
+                  render={(props) => <ReduxTest isAuthenticated={this.state.isAuthenticated}
+                  currentUser={this.state.currentUser} handleLogout={this.handleLogout} {...props} />}>
+                </Route>
                 <Route path="/login" 
                   render={(props) => <Login onLogin={this.handleLogin} {...props} />}>
                 </Route>

@@ -3,8 +3,10 @@ import List from "../components/List";
 import Form from "../components/Form";
 import Post from "../components/Post"
 
-const ReduxTest = () => (
-  <>
+const ReduxTest = (props) => {
+  if(props.isAuthenticated) {
+    return (
+      <>
     <div>
       <h2>Articles</h2>
       <List />
@@ -18,6 +20,13 @@ const ReduxTest = () => (
       <Post />
     </div>
   </>
-);
+    )
+  }
+  else {
+    return (
+      <div>NO ARTICLE</div>
+    )
+  }
+};
 
 export default ReduxTest;

@@ -5,13 +5,25 @@ import 'antd/dist/antd.css';
 import './AppHeader.css';
 import { Form, Icon, Input, Button, notification } from 'antd';
 
+import { connect } from "react-redux";
+
 import { saveArticle } from '../util/APIUtils';
+import { isArticleAdded } from "../redux/action/index";
+
+import { bindActionCreators } from 'redux';
+
+import {fetchArticles } from "../redux/action/index";
 
 function hasErrors(fieldsError) {
   return Object.keys(fieldsError).some(field => fieldsError[field]);
 }
 
-class ArticleForm extends React.Component {
+const mapDispatchToProps = dispatch => bindActionCreators({
+  fetchArticles: fetchArticles,
+  isArticleAdded: isArticleAdded
+}, dispatch)
+
+class ArticleForm extends React.Component { 
   componentDidMount() {
     // To disable submit button at the beginning.
     this.props.form.validateFields();
@@ -27,6 +39,7 @@ class ArticleForm extends React.Component {
         };
         saveArticle(saveArticleRequest)
         .then(response => {
+            this.props.fetchArticles();
             notification.success({
                 message: 'Read It Later App',
                 description: response.message
@@ -71,7 +84,10 @@ class ArticleForm extends React.Component {
   }
 }
 
-const WrappedArticleForm = Form.create({ name: 'horizontal_login' })(ArticleForm);
+const WrappedArticleForm = connect(
+  null,
+  mapDispatchToProps
+)(Form.create({ name: 'horizontal_login' })(ArticleForm));
 
 export default WrappedArticleForm;
           
